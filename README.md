@@ -24,7 +24,7 @@ See full example in [samples/quickstart.js](samples/quickstart.js)
 var tc = new thecallr.api("login", "password");
 
 // 1. "call" method: each parameter of the method as an argument
-tc.call("sms.seend", "THECALLR", "+33123456789", "Hello, world", {
+tc.call("sms.send", "THECALLR", "+33123456789", "Hello, world", {
 	flash_message: false
 })
 	.success(function(data) {
@@ -40,7 +40,7 @@ tc.call("sms.seend", "THECALLR", "+33123456789", "Hello, world", {
 var my_array = ["THECALLR", "+33123456789", "Hello, world", {
 	"flash_message": false
 }];
-tc.send("sms.seend", my_array)
+tc.send("sms.send", my_array)
 	.success(function(data) {
 		console.log("Success 2", data);
 	})
