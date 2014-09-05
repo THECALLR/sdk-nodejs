@@ -57,7 +57,7 @@ tc.send("sms.send", my_array)
 try {
 	var tc = new thecallr.api(42, 42);
 }
-# Exceptions handler
+// Exceptions handler
 catch (e) {
 	console.error("Fatal error");
 	console.error(e);
