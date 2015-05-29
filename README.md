@@ -175,6 +175,7 @@ api.call('did/areacode.countries').success(function(result) {
 ```
 
 **Get area codes available for a specific country and DID type**
+
 Check [did/areacode.get_list](http://thecallr.com/docs/api/services/did/areacode/#did/areacode.get_list) for DID type
 ```javascript
 api.call('did/areacode.get_list', 'US', null).success(function(result) {
@@ -192,6 +193,7 @@ api.call('did/areacode.types', 'US').success(function(result) {
 ***
 
 **Create a conference**
+
 Check [conference/10.create_room](http://thecallr.com/docs/api/services/conference/10/#conference/10.create_room) for details
 [params](http://thecallr.com/docs/objects/#CONFERENCE10)
 [access](http://thecallr.com/docs/objects/#CONFERENCE10.Room.Access)
