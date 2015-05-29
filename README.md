@@ -230,7 +230,7 @@ api.call('conference/10.create_room', 'room name', params, access).success(funct
 });
 ```
 
-* Call a romm access
+* Call a room access
 
 ```javascript
 api.call('conference/10.call_room_access', 'Room Access ID', 'BLOCKED', true).success(function(result) {
