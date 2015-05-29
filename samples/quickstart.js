@@ -26,7 +26,7 @@ try {
 	}];
 	tc.send("sms.send", my_array)
 		.success(function(data) {
-			console.log("Success 2", data);
+			console.log("Response 2:", data);
 		})
 		.error(function(error) {
 			console.error("\nError:", error.message);
