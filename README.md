@@ -21,7 +21,7 @@ var api = new thecallr.api('login', 'password');
 ## API return value management
 Set your success/error callback to get data returned by the API
 ```javascript
-api.call('system.get_timestamp').success(function(timestamp) {
+api.call('system.get_timestamp').success(function(response) {
 	// success callback
 }).error(function(error) {
 	// error callback
@@ -31,23 +31,29 @@ api.call('system.get_timestamp').success(function(timestamp) {
 ## Usage
 **Send an SMS**
 
-Without options:
+* Without options
+
 ```javascript
-api.call('sms.send', 'CALLR', '+33123456789', 'Hello world!');
+api.call('sms.send', 'CALLR', '+33123456789', 'Hello world!').success(function(response) {
+	// success callback
+});
 ```
 
-Personalized sender:
+* Personalized sender
+
 Your sender must have been authorized and respect the [sms_sender](http://thecallr.com/docs/formats/#sms_sender) format
 ```javascript
-api.call('sms.send', 'Your Company', '+33123456789', 'Hello world!');
+api.call('sms.send', 'Your Brand', '+33123456789', 'Hello world!');
 ```
 
-Automatic shortcode:
+* If you want to receive replies, do not set a sender, we will automatically use a shortcode
+
 ```javascript
 api.call('sms.send', '', '+33123456789', 'Hello world!');
 ```
 
-Force GSM encoding:
+* Force GSM encoding
+
 ```javascript
 var optionSMS = {
 	force_encoding: 'GSM'
@@ -55,7 +61,8 @@ var optionSMS = {
 api.call('sms.send', '', '+33123456789', 'Hello world!', optionSMS);
 ```
 
-Long SMS (160+ characters):
+* Long SMS (availability depends on carrier)
+
 ```javascript
 var text = 'Some super mega ultra long text to test message longer than 160 characters ' +
            'Some super mega ultra long text to test message longer than 160 characters ' +
@@ -63,7 +70,8 @@ var text = 'Some super mega ultra long text to test message longer than 160 char
 api.call('sms.send', 'CALLR', '+33123456789', text);
 ```
 
-Specify your SMS type:
+* Specify your SMS type
+
 ```javascript
 var optionSMS = {
 	nature: 'ALERTING'
@@ -71,7 +79,8 @@ var optionSMS = {
 api.call('sms.send', 'CALLR', '+33123456789', 'Hello world!', optionSMS);
 ```
 
-Custon data:
+* Custom data
+
 ```javascript
 var optionSMS = {
 	user_data: '42'
@@ -79,24 +88,31 @@ var optionSMS = {
 api.call('sms.send', 'CALLR', '+33123456789', 'Hello world!', optionSMS);
 ```
 
-Delivery Notification:
+* Delivery Notification
+
 ```javascript
 var optionSMS = {
 	push_dlr_enabled: true,
 	push_dlr_url: 'http://yourdomain.com/push_delivery_path',
 	// push_dlr_url_auth: 'login:password' // needed if you use Basic HTTP Authentication
 };
-api.call('sms.send', 'CALLR', '+33123456789', 'Hello world!', optionSMS);
+api.call('sms.send', 'CALLR', '+33123456789', 'Hello world!', optionSMS).success(function(response) {
+	// success callback
+});
 ```
 
 **Get an SMS**
 ```javascript
-api.call('sms.get', 'SMS Hash');
+api.call('sms.get', 'SMSHASH').success(function(response) {
+	// success callback
+});
 ```
 
 **Get SMS global options**
 ```javascript
-api.call('sms.get_settings');
+api.call('sms.get_settings').success(function(response) {
+	// success callback
+});
 ```
 Return an [SMS.settings](http://thecallr.com/docs/objects/#SMS.Settings) object
 
@@ -108,11 +124,11 @@ var options = {
 	push_dlr_enabled: true,
 	push_dlr_url: 'http://yourdomain.com/push_delivery_path'
 };
-api.call('sms.set_settings', options);
+api.call('sms.set_settings', options).success(function(response) {
+	// success callback
+});
 ```
 Return the updated [SMS.settings](http://thecallr.com/docs/objects/#SMS.Settings) object
-
-
 
 **Realtime**
 
@@ -139,9 +155,9 @@ var callOptions = {
 }
 
 api.call('dialr/call.realtime', 'appHash', target, callOptions).success(function(callID) {
-
+	// success callback
 }).error(function(error) {
-
+	// error callback
 });
 ```
 
