@@ -10,13 +10,84 @@ Install via NPM
 
 Or get sources from Github
 
-## Initialize your code
+## Init
 
 ```javascript
 var thecallr = require('thecallr');
+
+var api = new thecallr.api("login", "password");
 ```
 
-## Basic Example (Send SMS)
+## Usage
+
+**Send an SMS**
+
+* Without options
+
+```javascript
+api.call('sms.send', 'CALLR', '+33123456789', 'Hello world!');
+```
+
+* Personalized sender
+
+Your sender must have been authorized and respect the [sms_sender](http://thecallr.com/docs/formats/#sms_sender) format
+```javascript
+api.call('sms.send', 'Your Company', '+33123456789', 'Hello world!');
+```
+
+* Automatic shortcode
+
+Your sender must have been authorized and respect the [sms_sender](http://thecallr.com/docs/formats/#sms_sender) format
+```javascript
+api.call('sms.send', '', '+33123456789', 'Hello world!');
+```
+
+* Force GSM encoding
+
+```javascript
+var optionSMS = {
+	force_encoding: 'GSM'
+};
+api.call('sms.send', '', '+33123456789', 'Hello world!', optionSMS);
+```
+
+* Long SMS (160+ characters)
+
+```javascript
+
+```
+
+* Specify your SMS type
+
+```javascript
+var optionSMS = {
+	nature: 'ALERTING'
+};
+api.call('sms.send', '', '+33123456789', 'Hello world!', optionSMS);
+```
+
+* Custon data
+
+```javascript
+var optionSMS = {
+	user_data: '42'
+};
+api.call('sms.send', '', '+33123456789', 'Hello world!', optionSMS);
+```
+
+* Delivery Notification
+
+```javascript
+var optionSMS = {
+	push_dlr_enabled: true,
+	push_dlr_url: 'http://yourdomain.com/your_path/',
+	// push_dlr_url_auth: 'login:password' // needed if you use Basic HTTP Authentication
+};
+api.call('sms.send', '', '+33123456789', 'Hello world!', optionSMS);
+```
+
+
+
 See full example in [samples/quickstart.js](samples/quickstart.js)
 
 ```javascript
@@ -24,7 +95,7 @@ See full example in [samples/quickstart.js](samples/quickstart.js)
 var tc = new thecallr.api("login", "password");
 
 // 1. "call" method: each parameter of the method as an argument
-tc.call("sms.send", "THECALLR", "+33123456789", "Hello, world", {
+tc.call("sms.send", "CALLR", "+33123456789", "Hello, world", {
 	flash_message: false
 })
 	.success(function(data) {
