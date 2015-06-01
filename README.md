@@ -55,9 +55,8 @@ api.call('sms.send', '', '+33123456789', 'Hello world!');
 * Force GSM encoding
 
 ```javascript
-var optionSMS = {
-	force_encoding: 'GSM'
-};
+var optionSMS = { force_encoding: 'GSM' };
+
 api.call('sms.send', '', '+33123456789', 'Hello world!', optionSMS);
 ```
 
@@ -73,18 +72,16 @@ api.call('sms.send', 'CALLR', '+33123456789', text);
 * Specify your SMS type
 
 ```javascript
-var optionSMS = {
-	nature: 'ALERTING'
-};
+var optionSMS = { nature: 'ALERTING' };
+
 api.call('sms.send', 'CALLR', '+33123456789', 'Hello world!', optionSMS);
 ```
 
 * Custom data
 
 ```javascript
-var optionSMS = {
-	user_data: '42'
-};
+var optionSMS = { user_data: '42' };
+
 api.call('sms.send', 'CALLR', '+33123456789', 'Hello world!', optionSMS);
 ```
 
@@ -96,6 +93,7 @@ var optionSMS = {
 	push_dlr_url: 'http://yourdomain.com/push_delivery_path',
 	// push_dlr_url_auth: 'login:password' // needed if you use Basic HTTP Authentication
 };
+
 api.call('sms.send', 'CALLR', '+33123456789', 'Hello world!', optionSMS).success(function(response) {
 	// success callback
 });
@@ -124,6 +122,7 @@ var options = {
 	push_dlr_enabled: true,
 	push_dlr_url: 'http://yourdomain.com/push_delivery_path'
 };
+
 api.call('sms.set_settings', options).success(function(response) {
 	// success callback
 });
@@ -140,6 +139,7 @@ Return the updated [SMS.settings](http://thecallr.com/docs/objects/#SMS.Settings
 var options = {
 	url: 'http://yourdomain.com/realtime_callback_url'
 };
+
 api.call('app.create', 'REALTIME10', 'Your app name', options).success(function(app) {
 	// app.hash will be used for realtime call
 });
@@ -156,7 +156,7 @@ var target = {
 var callOptions = {
 	cdr_field: '42',
 	cli: 'BLOCKED'
-}
+};
 
 api.call('dialr/call.realtime', 'appHash', target, callOptions).success(function(callID) {
 	// success callback
@@ -187,7 +187,7 @@ api.call('did/areacode.get_list', 'US', null).success(function(result) {
 ```javascript
 api.call('did/areacode.types', 'US').success(function(result) {
 	//
-})
+});
 ```
 
 ***
@@ -198,9 +198,7 @@ Check [conference/10.create_room](http://thecallr.com/docs/api/services/conferen
 [params](http://thecallr.com/docs/objects/#CONFERENCE10)
 [access](http://thecallr.com/docs/objects/#CONFERENCE10.Room.Access)
 ```javascript
-var params = {
-	open: true
-}
+var params = { open: true };
 var access = [];
 
 api.call('conference/10.create_room', 'room name', params, access).success(function(result) {
@@ -217,9 +215,7 @@ api.call('conference/10.assign_did', 'Room ID', 'DID ID');
 * Create a PIN protected conference
 
 ```javascript
-var params = {
-	open: true
-}
+var params = { open: true };
 var access = [
 	{ pin: '1234', level: 'GUEST' },
 	{ pin: '4321', level: 'ADMIN', phone_number: '+33123456789' }
