@@ -46,7 +46,7 @@ Your sender must have been authorized and respect the [sms_sender](http://thecal
 api.call('sms.send', 'Your Brand', '+33123456789', 'Hello world!');
 ```
 
-* If you want to receive replies, do not set a sender, we will automatically use a shortcode
+* If you want to receive replies, do not set a sender - we will automatically use a shortcode
 
 ```javascript
 api.call('sms.send', '', '+33123456789', 'Hello world!');
@@ -69,7 +69,7 @@ var text = 'Some super mega ultra long text to test message longer than 160 char
 api.call('sms.send', 'CALLR', '+33123456789', text);
 ```
 
-* Specify your SMS type
+* Specify your SMS nature (alerting or marketing)
 
 ```javascript
 var optionSMS = { nature: 'ALERTING' };
@@ -85,7 +85,7 @@ var optionSMS = { user_data: '42' };
 api.call('sms.send', 'CALLR', '+33123456789', 'Hello world!', optionSMS);
 ```
 
-* Delivery Notification
+* Delivery Notification - set URL to receive notifications
 
 ```javascript
 var optionSMS = {
@@ -131,9 +131,9 @@ Return the updated [SMS.settings](http://thecallr.com/docs/objects/#SMS.Settings
 
 ***
 
-**Realtime**
+**REALTIME**
 
-* Create REALTIME app with callback URL
+* Create a REALTIME app with a callback URL
 
 ```javascript
 var options = {
@@ -145,7 +145,7 @@ api.call('app.create', 'REALTIME10', 'Your app name', options).success(function(
 });
 ```
 
-* Start a Real-time outbound call
+* Start a REALTIME outbound call
 
 ```javascript
 var target = {
@@ -192,7 +192,7 @@ api.call('did/areacode.types', 'US').success(function(result) {
 
 ***
 
-**Create a conference**
+**Create a conference room**
 
 Check [conference/10.create_room](http://thecallr.com/docs/api/services/conference/10/#conference/10.create_room) for details
 [params](http://thecallr.com/docs/objects/#CONFERENCE10)
@@ -212,7 +212,7 @@ api.call('conference/10.create_room', 'room name', params, access).success(funct
 api.call('conference/10.assign_did', 'Room ID', 'DID ID');
 ```
 
-* Create a PIN protected conference
+* Create a PIN protected conference room
 
 ```javascript
 var params = { open: true };
