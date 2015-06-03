@@ -13,9 +13,9 @@ Or get sources from Github
 ## Init
 
 ```javascript
-var thecallr = require('thecallr');
+var callr = require('thecallr');
 
-var api = new thecallr.api('login', 'password');
+var api = new callr.api('login', 'password');
 ```
 
 ## API return value management
@@ -98,6 +98,22 @@ api.call('sms.send', 'CALLR', '+33123456789', 'Hello world!', optionSMS).success
 	// success callback
 });
 ```
+* Inbound SMS - set URL to receive inbound messages (MO) and replies
+
+**Do not set a sender if you want to receive replies** - we will automatically use a shortcode.
+
+```javascript
+var optionSMS = {
+	push_mo_enabled: true,
+	push_mo_url: 'http://yourdomain.com/mo_delivery_path',
+	// push_mo_url_auth: 'login:password' // needed if you use Basic HTTP Authentication
+};
+
+api.call('sms.send', '', '+33123456789', 'Hello world!', optionSMS).success(function(response) {
+	// success callback
+});
+```
+
 
 **Get an SMS**
 ```javascript
@@ -106,7 +122,7 @@ api.call('sms.get', 'SMSHASH').success(function(response) {
 });
 ```
 
-**Get SMS global options**
+**Get SMS global settings**
 ```javascript
 api.call('sms.get_settings').success(function(response) {
 	// success callback
@@ -114,16 +130,18 @@ api.call('sms.get_settings').success(function(response) {
 ```
 Return an [SMS.settings](http://thecallr.com/docs/objects/#SMS.Settings) object
 
-**Set SMS global options**
+**Set SMS global settings**
 
 Add options that you want to change in the object
 ```javascript
-var options = {
+var settings = {
 	push_dlr_enabled: true,
-	push_dlr_url: 'http://yourdomain.com/push_delivery_path'
+	push_dlr_url: 'http://yourdomain.com/push_delivery_path',
+	push_mo_enabled: true,
+	push_mo_url: 'http://yourdomain.com/mo_delivery_path'
 };
 
-api.call('sms.set_settings', options).success(function(response) {
+api.call('sms.set_settings', settings).success(function(response) {
 	// success callback
 });
 ```
