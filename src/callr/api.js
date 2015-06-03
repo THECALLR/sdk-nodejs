@@ -1,136 +1,137 @@
-var url = require('url'),
-	https = require('https'),
-	assert = require('assert');
+var url = require('url');
+var https = require('https');
+var assert = require('assert');
 
 exports.api = function(login, password, config) {
-	"use strict";
-	assert.equal(typeof(login), 'string', "argument 'login' must be a string");
-	assert.equal(typeof(password), 'string', "argument 'password' must be a string");
+    'use strict';
 
-	var API_URL = 'https://api.thecallr.com';
+    assert.equal(typeof(login), 'string', "argument 'login' must be a string");
+    assert.equal(typeof(password), 'string', "argument 'password' must be a string");
 
-	// Callback class
-	var Callback = function() {
-		this.success = false;
-		this.error = false;
-	};
+    var API_URL = 'https://api.thecallr.com';
 
-	// Send a request to THECALLR webservice
-	this.call = function(method) {
-		assert.equal(typeof(method), 'string', "argument 'method' must be a string");
+    // Callback class
+    var Callback = function() {
+        this.success = false;
+        this.error = false;
+    };
 
-		var args = Array.prototype.slice.call(arguments);
-		return this.send(method, args.slice(1, args.length));
-	};
+    // Send a request to THECALLR webservice
+    this.call = function(method) {
+        assert.equal(typeof(method), 'string', "argument 'method' must be a string");
 
-	// Send a request to THECALLR webservice
-	this.send = function(method, params, id) {
-		assert.equal(typeof(method), 'string', "argument 'method' must be a string");
-		assert.ok(params instanceof(Array), "argument 'params' must be an array");
+        var args = Array.prototype.slice.call(arguments);
+        return this.send(method, args.slice(1, args.length));
+    };
 
-		var json = JSON.stringify({
-			id: id === undefined || isNaN(parseInt(id)) ? Math.floor(Math.random() * (999 - 100)) + 100 : id,
-			jsonrpc: '2.0',
-			method: method,
-			params: params instanceof Array ? params : []
-		});
+    // Send a request to THECALLR webservice
+    this.send = function(method, params, id) {
+        assert.equal(typeof(method), 'string', "argument 'method' must be a string");
+        assert.ok(params instanceof(Array), "argument 'params' must be an array");
 
-		var options = url.parse(API_URL);
-		options.port = 443;
-		options.method = "POST";
-		options.auth = login + ':' + password;
-		options.headers = {
-			'Content-Type': 'application/json-rpc; charset=utf-8',
-			'Content-Length': Buffer.byteLength(json)
-		};
+        var json = JSON.stringify({
+            id: id === undefined || isNaN(parseInt(id)) ? Math.floor(Math.random() * (999 - 100)) + 100 : id,
+            jsonrpc: '2.0',
+            method: method,
+            params: params instanceof Array ? params : []
+        });
 
-		// Proxy agent support
-		if (config && config.hasOwnProperty('proxyAgent')) {
-			options.agent = config.proxyAgent;
-		}
+        var options = url.parse(API_URL);
+        options.port = 443;
+        options.method = "POST";
+        options.auth = login + ':' + password;
+        options.headers = {
+            'Content-Type': 'application/json-rpc; charset=utf-8',
+            'Content-Length': Buffer.byteLength(json)
+        };
 
-		this.callback = new Callback();
+        // Proxy agent support
+        if (config && config.hasOwnProperty('proxyAgent')) {
+            options.agent = config.proxyAgent;
+        }
 
-		// Annonymous Closure to keep data untouched on successive call
-		(function(options, json, callback) {
-			// make new request
-			var request = https.request(options, function(response) {
-				var buf = '';
+        this.callback = new Callback();
 
-				if (response.statusCode != 200) {
-					doCallback(callback.error, error('HTTP_CODE_ERROR', -1, {
-						http_code: response.statusCode
-					}));
-				}
+        // Annonymous Closure to keep data untouched on successive call
+        (function(options, json, callback) {
+            // make new request
+            var request = https.request(options, function(response) {
+                var buf = '';
 
-				response.on('data', function(data) {
-			          buf += data;
-				});
+                if (response.statusCode != 200) {
+                    doCallback(callback.error, error('HTTP_CODE_ERROR', -1, {
+                        http_code: response.statusCode
+                    }));
+                }
 
-				response.on('end', function() {
-			          parseData(buf.toString(), callback);
-				});
-			});
+                response.on('data', function(data) {
+                      buf += data;
+                });
 
-			request.on('error', function(e) {
-				doCallback(callback.error, error('HTTP_EXCEPTION', -1, {
-					exception: e
-				}));
-			});
+                response.on('end', function() {
+                      parseData(buf.toString(), callback);
+                });
+            });
 
-			request.on('end', function() {
-				console.log('request end');
-			});
+            request.on('error', function(e) {
+                doCallback(callback.error, error('HTTP_EXCEPTION', -1, {
+                    exception: e
+                }));
+            });
 
-			request.end(json);
+            request.on('end', function() {
+                console.log('request end');
+            });
 
-		})(options, json, this.callback);
+            request.end(json);
 
-		return this;
-	};
+        })(options, json, this.callback);
 
-	// set success callback
-	this.success = function(cb) {
-		this.callback.success = cb;
-		return this;
-	};
+        return this;
+    };
 
-	// set error callback
-	this.error = function(cb) {
-		this.callback.error = cb;
-		return this;
-	};
+    // set success callback
+    this.success = function(cb) {
+        this.callback.success = cb;
+        return this;
+    };
 
-	// Response analysis
-	function parseData(json, callback) {
-		try {
-			var data = JSON.parse(json);
-			if (data && data.hasOwnProperty('result'))
-				doCallback(callback.success, data.result);
-			else if (data && data.hasOwnProperty('error') && data.error)
-				doCallback(callback.error, error(data.error.message, data.error.code, null));
-			else
-				doCallback(callback.error, error('INVALID_RESPONSE', -1, {
-					responses: json.toString()
-				}));
-		}
-		catch (e) {
-			doCallback(callback.error, error('INVALID_RESPONSE', -1, {
-				exception: e,
-				response: json.toString()
-			}));
-		}
-	}
+    // set error callback
+    this.error = function(cb) {
+        this.callback.error = cb;
+        return this;
+    };
 
-	function doCallback(callback, result) {
-		if (typeof(callback) == 'function')
-			callback(result);
-	}
+    // Response analysis
+    function parseData(json, callback) {
+        try {
+            var data = JSON.parse(json);
+            if (data && data.hasOwnProperty('result'))
+                doCallback(callback.success, data.result);
+            else if (data && data.hasOwnProperty('error') && data.error)
+                doCallback(callback.error, error(data.error.message, data.error.code, null));
+            else
+                doCallback(callback.error, error('INVALID_RESPONSE', -1, {
+                    responses: json.toString()
+                }));
+        }
+        catch (e) {
+            doCallback(callback.error, error('INVALID_RESPONSE', -1, {
+                exception: e,
+                response: json.toString()
+            }));
+        }
+    }
 
-	function error(msg, code, data) {
-		var err = new Error(msg);
-		err.code = code;
-		err.data = data;
-		return err;
-	}
+    function doCallback(callback, result) {
+        if (typeof(callback) == 'function')
+            callback(result);
+    }
+
+    function error(msg, code, data) {
+        var err = new Error(msg);
+        err.code = code;
+        err.data = data;
+        return err;
+    }
 };
