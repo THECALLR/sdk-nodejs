@@ -20,6 +20,7 @@ var api = new callr.api('login', 'password');
 
 ## API return value management
 > Set your success/error callback to get data returned by the API
+
 ```javascript
 api.call('system.get_timestamp').success(function(response) {
 	// success callback
@@ -45,12 +46,13 @@ api.call('sms.send', 'CALLR', '+33123456789', 'Hello world!').success(function(r
 #### Personalized sender
 
 > Your sender must have been authorized and respect the [sms_sender](http://thecallr.com/docs/formats/#sms_sender) format
+
 ```javascript
 api.call('sms.send', 'Your Brand', '+33123456789', 'Hello world!');
 ```
 
 ##### Method
-- [sms.send](http://thecallr.com/docs/api/services/sms/#sms.send)
+* [sms.send](http://thecallr.com/docs/api/services/sms/#sms.send)
 
 #### If you want to receive replies, do not set a sender - we will automatically use a shortcode
 
@@ -97,6 +99,7 @@ api.call('sms.send', 'CALLR', '+33123456789', 'Hello world!', optionSMS);
 
 ##### Method
 * [sms.send](http://thecallr.com/docs/api/services/sms/#sms.send)
+
 ##### Objects
 * [SMS.Options](http://thecallr.com/docs/objects/#SMS.Options)
 
@@ -110,6 +113,7 @@ api.call('sms.send', 'CALLR', '+33123456789', 'Hello world!', optionSMS);
 
 ##### Method
 * [sms.send](http://thecallr.com/docs/api/services/sms/#sms.send)
+
 ##### Objects
 * [SMS.Options](http://thecallr.com/docs/objects/#SMS.Options)
 
@@ -130,13 +134,14 @@ api.call('sms.send', 'CALLR', '+33123456789', 'Hello world!', optionSMS).success
 
 ##### Method
 * [sms.send](http://thecallr.com/docs/api/services/sms/#sms.send)
+
 ##### Objects
 * [SMS.Options](http://thecallr.com/docs/objects/#SMS.Options)
 
 
 ### Inbound SMS - set URL to receive inbound messages (MO) and replies
 
-**Do not set a sender if you want to receive replies** - we will automatically use a shortcode.
+> **Do not set a sender if you want to receive replies** - we will automatically use a shortcode.
 
 ```javascript
 var optionSMS = {
@@ -152,6 +157,7 @@ api.call('sms.send', '', '+33123456789', 'Hello world!', optionSMS).success(func
 
 ##### Method
 * [sms.send](http://thecallr.com/docs/api/services/sms/#sms.send)
+
 ##### Objects
 * [SMS.Options](http://thecallr.com/docs/objects/#SMS.Options)
 
@@ -165,6 +171,7 @@ api.call('sms.get', 'SMSHASH').success(function(response) {
 
 ##### Method
 * [sms.get](http://thecallr.com/docs/api/services/sms/#sms.get)
+
 ##### Objects
 * [SMS](http://thecallr.com/docs/objects/#SMS)
 
@@ -179,13 +186,15 @@ api.call('sms.get_settings').success(function(response) {
 
 ##### Method
 * [sms.get_settings](http://thecallr.com/docs/api/services/sms/#sms.get_settings)
+
 ##### Objects
 * [SMS.settings](http://thecallr.com/docs/objects/#SMS.Settings)
 
 
 #### Set settings
 
-Add options that you want to change in the object
+> Add options that you want to change in the object
+
 ```javascript
 var settings = {
 	push_dlr_enabled: true,
@@ -199,10 +208,11 @@ api.call('sms.set_settings', settings).success(function(response) {
 });
 ```
 
-Returns the updated settings.
+> Returns the updated settings.
 
 ##### Method
 * [sms.set_settings](http://thecallr.com/docs/api/services/sms/#sms.set_settings)
+
 ##### Objects
 * [SMS.settings](http://thecallr.com/docs/objects/#SMS.Settings)
 
@@ -224,6 +234,7 @@ api.call('apps.create', 'REALTIME10', 'Your app name', options).success(function
 
 ##### Method
 * [apps.create](http://thecallr.com/docs/api/services/apps/#apps.create)
+
 ##### Objects
 * [REALTIME10](http://thecallr.com/docs/objects/#REALTIME10)
 * [App](http://thecallr.com/docs/objects/#App)
@@ -250,10 +261,10 @@ api.call('dialr/call.realtime', 'appHash', target, callOptions).success(function
 
 ##### Method
 * [dialr/call.realtime](http://thecallr.com/docs/api/services/dialr/#call.realtime)
+
 ##### Objects
 * [Target](http://thecallr.com/docs/objects/#Target)
 * [REALTIME10.Call.Options](http://thecallr.com/docs/objects/#REALTIME10.Call.Options)
-
 
 ***
 
@@ -268,9 +279,9 @@ api.call('did/areacode.countries').success(function(result) {
 
 ##### Method
 * [did/areacode.countries](http://thecallr.com/docs/api/services/did/areacode/#did/areacode.countries)
+
 ##### Objects
 * [DID.Country](http://thecallr.com/docs/objects/#DID.Country)
-
 
 #### Get area codes available for a specific country and DID type
 
@@ -282,6 +293,7 @@ api.call('did/areacode.get_list', 'US', null).success(function(result) {
 
 ##### Method
 * [did/areacode.get_list](http://thecallr.com/docs/api/services/did/areacode/#did/areacode.get_list)
+
 ##### Objects
 * [DID.AreaCode](http://thecallr.com/docs/objects/#DID.AreaCode)
 
@@ -291,12 +303,11 @@ api.call('did/areacode.types', 'US').success(function(result) {
 	//
 });
 ```
-
 ##### Method
 * [did/areacode.types](http://thecallr.com/docs/api/services/did/areacode/#did/areacode.types)
+
 ##### Objects
 * [DID.Type](http://thecallr.com/docs/objects/#DID.Type)
-
 
 ***
 
@@ -315,10 +326,10 @@ api.call('conference/10.create_room', 'room name', params, access).success(funct
 
 ##### Method
 * [conference/10.create_room](http://thecallr.com/docs/api/services/conference/10/#conference/10.create_room)
+
 ##### Objects
 * [CONFERENCE10](http://thecallr.com/docs/objects/#CONFERENCE10)
 * [CONFERENCE10.Room.Access](http://thecallr.com/docs/objects/#CONFERENCE10.Room.Access)
-
 
 #### Assign a DID to a room
 
@@ -345,10 +356,10 @@ api.call('conference/10.create_room', 'room name', params, access).success(funct
 
 ##### Method
 * [conference/10.create_room](http://thecallr.com/docs/api/services/conference/10/#conference/10.create_room)
+
 ##### Objects
 * [CONFERENCE10](http://thecallr.com/docs/objects/#CONFERENCE10)
 * [CONFERENCE10.Room.Access](http://thecallr.com/docs/objects/#CONFERENCE10.Room.Access)
-
 
 #### Call a room access
 
