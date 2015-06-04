@@ -310,10 +310,6 @@ api.call('did/areacode.types', 'US').success(function(result) {
 *Objects*
 * [DID.Type](http://thecallr.com/docs/objects/#DID.Type)
 
-
-
-
-
 #### Buy a DID (after a reserve)
 
 ```javascript
@@ -324,6 +320,9 @@ api.call('did/store.buy_order', 'OrderToken').success(function(result) {
 
 *Method*
 * [did/store.buy_order](http://thecallr.com/docs/api/services/did/store/#did/store.buy_order)
+
+*Objects*
+* [DID.Store.BuyStatus](http://thecallr.com/docs/objects/#DID.Store.BuyStatus)
 
 #### Cancel your order (after a reserve)
 
@@ -358,6 +357,9 @@ api.call('did/store.get_quota_status').success(function(result) {
 *Method*
 * [did/store.get_quota_status](http://thecallr.com/docs/api/services/did/store/#did/store.get_quota_status)
 
+*Objects*
+* [DID.Store.QuotaStatus](http://thecallr.com/docs/objects/#DID.Store.QuotaStatus)
+
 #### Get a quote without reserving a DID
 
 ```javascript
@@ -368,6 +370,9 @@ api.call('did/store.get_quote', 0, 'GOLD', 1).success(function(result) {
 
 *Method*
 * [did/store.get_quote](http://thecallr.com/docs/api/services/did/store/#did/store.get_quote)
+
+*Objects/
+* [DID.Store.Quote](http://thecallr.com/docs/objects/#DID.Store.Quote)
 
 #### Reserve a DID
 
@@ -381,18 +386,21 @@ api.call('did/store.reserve', 0, 'GOLD', 1, 'RANDOM').success(function(result) {
 * [did/store.reserve](http://thecallr.com/docs/api/services/did/store/#did/store.reserve)
 
 *Objects*
-* [DID.AreaCode](http://thecallr.com/docs/objects/#DID.AreaCode)
+* [DID.Store.Reservation](http://thecallr.com/docs/objects/#DID.Store.Reservation)
 
 #### View your order
 
 ```javascript
-api.call('did/store.buy_order', 'Order Token').success(function(result) {
+api.call('did/store.view_order', 'OrderToken').success(function(result) {
     //
 });
 ```
 
 *Method*
-* [did/store.buy_order](http://thecallr.com/docs/api/services/did/store/#did/store.buy_order)
+* [did/store.buy_order](http://thecallr.com/docs/api/services/did/store/#did/store.view_order)
+
+*Objects*
+* [DID.Store.Reservation](http://thecallr.com/docs/objects/#DID.Store.Reservation)
 
 ********************************************************************************
 
@@ -455,7 +463,7 @@ api.call('conference/10.call_room_access', 'Room Access ID', 'BLOCKED', true).su
 ```
 
 *Method*
-* [conference/10.call_room_access](http://thecallr.com/docs/api/services/conference/10/#conference/10.create_room)
+* [conference/10.call_room_access](http://thecallr.com/docs/api/services/conference/10/#conference/10.call_room_access)
 
 ********************************************************************************
 
@@ -468,6 +476,7 @@ api.call('media/library.get_list', null).success(function(result) {
     //
 });
 ```
+
 *Method*
 * [media/library.get_list](http://thecallr.com/docs/api/services/media/library/#media/library.get_list)
 
@@ -479,11 +488,14 @@ api.call('media/library.create', 'name').success(function(media_id) {
 });
 ```
 
+*Method*
+* [media/library.create](http://thecallr.com/docs/api/services/media/library/#media/library.create)
+
 #### Upload a media
 
 ```javascript
 var media_id = 0;
-api.call('media/library.set_content', media_id, 'text', 'base64 audio_data').success(function(result) {
+api.call('media/library.set_content', media_id, 'text', 'base64_audio_data').success(function(result) {
     //
 });
 ```
