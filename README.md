@@ -317,7 +317,7 @@ api.call('did/areacode.types', 'US').success(function(result) {
 #### Buy a DID (after a reserve)
 
 ```javascript
-api.call('did/store.buy_order', 'Order Token').success(function(result) {
+api.call('did/store.buy_order', 'OrderToken').success(function(result) {
     //
 });
 ```
@@ -328,7 +328,7 @@ api.call('did/store.buy_order', 'Order Token').success(function(result) {
 #### Cancel your order (after a reserve)
 
 ```javascript
-api.call('did/store.cancel_order', 'Order Token').success(function(result) {
+api.call('did/store.cancel_order', 'OrderToken').success(function(result) {
     //
 });
 ```
@@ -520,6 +520,7 @@ api.call('cdr.get', 'OUT', from, to, null, null).success(function(result) {
 *Method*
 * [cdr.get](http://thecallr.com/docs/api/services/cdr/#cdr.get)
 
+********************************************************************************
 
 ## Fatal error management
 ```javascript
