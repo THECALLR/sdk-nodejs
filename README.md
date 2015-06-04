@@ -534,6 +534,10 @@ api.call('cdr.get', 'OUT', from, to, null, null).success(function(result) {
 *Method*
 * [cdr.get](http://thecallr.com/docs/api/services/cdr/#cdr.get)
 
+*Objects*
+* [CDR.In](http://thecallr.com/docs/objects/#CDR.In)
+* [CDR.Out](http://thecallr.com/docs/objects/#CDR.Out)
+
 ********************************************************************************
 
 ## Fatal error management
