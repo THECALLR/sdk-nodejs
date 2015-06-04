@@ -474,7 +474,7 @@ api.call('media/library.get_list', null).success(function(result) {
 #### Create an empty media
 
 ```javascript
-api.call('media/library.create', 'name').success(function(result) {
+api.call('media/library.create', 'name').success(function(media_id) {
     //
 });
 ```
@@ -499,6 +499,26 @@ api.call('media/tts.set_content', media_id, 'Hello world!', 'TTS-EN-GB_SERENA', 
     //
 });
 ```
+
+*Method*
+* [media/tts.set_content](http://thecallr.com/docs/api/services/media/tts/#media/tts.set_content)
+
+********************************************************************************
+
+### CDR
+
+#### Get inbound or outbound CDRs
+```javascript
+var from = 'YYYY-MM-DD HH:MM:SS';
+var to = 'YYYY-MM-DD HH:MM:SS';
+
+api.call('cdr.get', 'OUT', from, to, null, null).success(function(result) {
+    //
+});
+```
+
+*Method*
+* [cdr.get](http://thecallr.com/docs/api/services/cdr/#cdr.get)
 
 
 ## Fatal error management
