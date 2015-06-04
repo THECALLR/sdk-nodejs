@@ -35,7 +35,7 @@ api.call('system.get_timestamp').success(function(response) {
 #### Without options
 
 ```javascript
-api.call('sms.send', 'CALLR', '+33123456789', 'Hello world!').success(function(response) {
+api.call('sms.send', 'CALLR', '+33123456789', 'Hello world!', null).success(function(response) {
 	// success callback
 });
 ```
@@ -48,7 +48,7 @@ api.call('sms.send', 'CALLR', '+33123456789', 'Hello world!').success(function(r
 > Your sender must have been authorized and respect the [sms_sender](http://thecallr.com/docs/formats/#sms_sender) format
 
 ```javascript
-api.call('sms.send', 'Your Brand', '+33123456789', 'Hello world!');
+api.call('sms.send', 'Your Brand', '+33123456789', 'Hello world!', null);
 ```
 
 ##### Method
@@ -57,7 +57,7 @@ api.call('sms.send', 'Your Brand', '+33123456789', 'Hello world!');
 #### If you want to receive replies, do not set a sender - we will automatically use a shortcode
 
 ```javascript
-api.call('sms.send', '', '+33123456789', 'Hello world!');
+api.call('sms.send', '', '+33123456789', 'Hello world!', null);
 ```
 
 ##### Method
@@ -83,7 +83,7 @@ api.call('sms.send', '', '+33123456789', 'Hello world!', optionSMS);
 var text = 'Some super mega ultra long text to test message longer than 160 characters ' +
            'Some super mega ultra long text to test message longer than 160 characters ' +
            'Some super mega ultra long text to test message longer than 160 characters';
-api.call('sms.send', 'CALLR', '+33123456789', text);
+api.call('sms.send', 'CALLR', '+33123456789', text, null);
 ```
 
 ##### Method
@@ -216,7 +216,7 @@ api.call('sms.set_settings', settings).success(function(response) {
 ##### Objects
 * [SMS.settings](http://thecallr.com/docs/objects/#SMS.Settings)
 
-***
+********************************************************************************
 
 ### REALTIME
 
@@ -266,7 +266,7 @@ api.call('dialr/call.realtime', 'appHash', target, callOptions).success(function
 * [Target](http://thecallr.com/docs/objects/#Target)
 * [REALTIME10.Call.Options](http://thecallr.com/docs/objects/#REALTIME10.Call.Options)
 
-***
+********************************************************************************
 
 ### DIDs
 
@@ -303,13 +303,98 @@ api.call('did/areacode.types', 'US').success(function(result) {
 	//
 });
 ```
+
 ##### Method
 * [did/areacode.types](http://thecallr.com/docs/api/services/did/areacode/#did/areacode.types)
 
 ##### Objects
 * [DID.Type](http://thecallr.com/docs/objects/#DID.Type)
 
-***
+
+
+
+
+#### Buy a DID (after a reserve)
+
+```javascript
+api.call('did/store.buy_order', 'Order Token').success(function(result) {
+	//
+});
+```
+
+##### Method
+* [did/store.buy_order](http://thecallr.com/docs/api/services/did/store/#did/store.buy_order)
+
+#### Cancel your order (after a reserve)
+
+```javascript
+api.call('did/store.cancel_order', 'Order Token').success(function(result) {
+	//
+});
+```
+
+##### Method
+* [did/store.cancel_order](http://thecallr.com/docs/api/services/did/store/#did/store.cancel_order)
+
+#### Cancel a DID subscription
+
+```javascript
+api.call('did/store.cancel_subscription', 'DID ID').success(function(result) {
+	//
+});
+```
+
+##### Method
+* [did/store.cancel_subscription](http://thecallr.com/docs/api/services/did/store/#did/store.cancel_subscription)
+
+#### View your store quota status
+
+```javascript
+api.call('did/store.get_quota_status').success(function(result) {
+	//
+});
+```
+
+##### Method
+* [did/store.get_quota_status](http://thecallr.com/docs/api/services/did/store/#did/store.get_quota_status)
+
+#### Get a quote without reserving a DID
+
+```javascript
+api.call('did/store.get_quote', 0, 'GOLD', 1).success(function(result) {
+	//
+});
+```
+
+##### Method
+* [did/store.get_quote](http://thecallr.com/docs/api/services/did/store/#did/store.get_quote)
+
+#### Reserve a DID
+
+```javascript
+api.call('did/store.reserve', 0, 'GOLD', 1, 'RANDOM').success(function(result) {
+	//
+});
+```
+
+##### Method
+* [did/store.reserve](http://thecallr.com/docs/api/services/did/store/#did/store.reserve)
+
+##### Objects
+* [DID.AreaCode](http://thecallr.com/docs/objects/#DID.AreaCode)
+
+#### View your order
+
+```javascript
+api.call('did/store.buy_order', 'Order Token').success(function(result) {
+	//
+});
+```
+
+##### Method
+* [did/store.buy_order](http://thecallr.com/docs/api/services/did/store/#did/store.buy_order)
+
+********************************************************************************
 
 ### Conferencing
 
