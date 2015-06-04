@@ -495,6 +495,7 @@ api.call('media/library.create', 'name').success(function(media_id) {
 
 ```javascript
 var media_id = 0;
+
 api.call('media/library.set_content', media_id, 'text', 'base64_audio_data').success(function(result) {
     //
 });
@@ -507,6 +508,7 @@ api.call('media/library.set_content', media_id, 'text', 'base64_audio_data').suc
 
 ```javascript
 var media_id = 0;
+
 api.call('media/tts.set_content', media_id, 'Hello world!', 'TTS-EN-GB_SERENA', null).success(function(result) {
     //
 });
