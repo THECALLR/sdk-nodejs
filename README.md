@@ -548,7 +548,7 @@ api.call('cdr.get', 'OUT', from, to, null, null).success(function(result) {
 
 ### SENDR
 
-#### Broadcast messages to a target
+#### Broadcast messages to a target (BETA)
 
 ```javascript
 var target = {
@@ -577,11 +577,18 @@ var target = {
     timeout: 30
 };
 
-var message = [131, 132, 134];
+var messages = [131, 132, 134];
 
 api.call('sendr/simple.broadcast_1', target, messages, null).success(function(result) {
     //
 });
+
+*Method*
+* [sendr/simple.broadcast_1](http://thecallr.com/docs/api/services/sendr/simple/#sendr/simple.broadcast_1)
+
+*Objects*
+* [Target](http://thecallr.com/docs/objects/#Target)
+* [SENDR.Simple.Broadcast1.Options](http://thecallr.com/docs/objects/#SENDR.Simple.Broadcast1.Options)
 ```
 
 ********************************************************************************
