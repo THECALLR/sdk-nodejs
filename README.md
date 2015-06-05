@@ -163,6 +163,7 @@ api.call('sms.send', '', '+33123456789', 'Hello world!', optionSMS).success(func
 
 
 ### Get an SMS
+
 ```javascript
 api.call('sms.get', 'SMSHASH').success(function(response) {
     // success callback
@@ -178,6 +179,7 @@ api.call('sms.get', 'SMSHASH').success(function(response) {
 ### SMS Global Settings
 
 #### Get settings
+
 ```javascript
 api.call('sms.get_settings').success(function(response) {
     // success callback
@@ -271,6 +273,7 @@ api.call('dialr/call.realtime', 'appHash', target, callOptions).success(function
 ### DIDs
 
 #### List available countries with DID availability
+
 ```javascript
 api.call('did/areacode.countries').success(function(result) {
     //
@@ -298,6 +301,7 @@ api.call('did/areacode.get_list', 'US', null).success(function(result) {
 * [DID.AreaCode](http://thecallr.com/docs/objects/#DID.AreaCode)
 
 #### Get DID types available for a specific country
+
 ```javascript
 api.call('did/areacode.types', 'US').success(function(result) {
     //
@@ -522,6 +526,7 @@ api.call('media/tts.set_content', media_id, 'Hello world!', 'TTS-EN-GB_SERENA', 
 ### CDR
 
 #### Get inbound or outbound CDRs
+
 ```javascript
 var from = 'YYYY-MM-DD HH:MM:SS';
 var to = 'YYYY-MM-DD HH:MM:SS';
@@ -537,6 +542,43 @@ api.call('cdr.get', 'OUT', from, to, null, null).success(function(result) {
 *Objects*
 * [CDR.In](http://thecallr.com/docs/objects/#CDR.In)
 * [CDR.Out](http://thecallr.com/docs/objects/#CDR.Out)
+
+
+********************************************************************************
+
+### SENDR
+
+#### Broadcast messages to a target
+
+```javascript
+var target = {
+    number: '+33123456789',
+    timeout: 30
+};
+
+var messages = [131, 132, 'TTS|TTS_EN-GB_SERENA|Hello world! how are you ? I hope you enjoy this call. good bye.'];
+
+var options = {
+    cdr_field: 'userData',
+    cli: 'BLOCKED',
+    loop: 2
+};
+
+api.call('sendr/simple.broadcast_1', target, messages, options);
+```
+
+##### Without options
+
+```javascript
+var target = {
+    number: '+33123456789',
+    timeout: 30
+};
+
+var message = [131, 132, 134];
+
+api.call('sendr/simple.broadcast_1', target, messages, null);
+```
 
 ********************************************************************************
 
