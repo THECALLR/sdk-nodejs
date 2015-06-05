@@ -564,7 +564,9 @@ var options = {
     loop: 2
 };
 
-api.call('sendr/simple.broadcast_1', target, messages, options);
+api.call('sendr/simple.broadcast_1', target, messages, options).success(function(result) {
+    //
+});
 ```
 
 ##### Without options
@@ -577,7 +579,9 @@ var target = {
 
 var message = [131, 132, 134];
 
-api.call('sendr/simple.broadcast_1', target, messages, null);
+api.call('sendr/simple.broadcast_1', target, messages, null).success(function(result) {
+    //
+});
 ```
 
 ********************************************************************************
