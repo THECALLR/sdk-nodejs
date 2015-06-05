@@ -1,19 +1,19 @@
 sdk-nodejs
 ==========
 
-SDK in NodeJS for THECALLR API
+SDK in NodeJS for CALLR API
 
 ## Quick start
 Install via NPM
 
-    npm install thecallr
+    npm install callr
 
 Or get sources from Github
 
 ## Init
 
 ```javascript
-var callr = require('thecallr');
+var callr = require('callr');
 
 var api = new callr.api('login', 'password');
 ```
