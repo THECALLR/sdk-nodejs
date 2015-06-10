@@ -1,1 +1,1 @@
-module.exports = require('./lib/callr');
+module.exports = require('./src/callr/api');
