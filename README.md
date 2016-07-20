@@ -1,7 +1,8 @@
 sdk-nodejs
 ==========
 
-SDK in NodeJS for CALLR API
+SDK in NodeJS for CALLR API  
+For more examples see the [the nodejs examples](https://github.com/THECALLR/examples-nodejs) repo.  
 
 ## Quick start
 Install via NPM
