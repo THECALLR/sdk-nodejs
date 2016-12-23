@@ -199,7 +199,7 @@ api.call('apps.assign_did', 'appHash', 'DID ID').success(function(result) {
 * [App](http://www.callr.com/docs/objects/#App)
 * [DID](http://www.callr.com/docs/objects/#DID)
 
-********************************************************************************
+***
 
 ### DIDs
 
@@ -337,7 +337,7 @@ api.call('did/store.view_order', 'OrderToken').success(function(result) {
 *Objects*
 * [DID.Store.Reservation](http://www.callr.com/docs/objects/#DID.Store.Reservation)
 
-********************************************************************************
+***
 
 ### Conferencing
 
@@ -400,7 +400,7 @@ api.call('conference/10.call_room_access', 'Room Access ID', 'BLOCKED', true).su
 *Method*
 * [conference/10.call_room_access](http://www.callr.com/docs/api/services/conference/10/#conference/10.call_room_access)
 
-********************************************************************************
+***
 
 ### Media
 
@@ -452,7 +452,7 @@ api.call('media/tts.set_content', media_id, 'Hello world!', 'TTS-EN-GB_SERENA', 
 *Method*
 * [media/tts.set_content](http://www.callr.com/docs/api/services/media/tts/#media/tts.set_content)
 
-********************************************************************************
+***
 
 ### CDR
 
@@ -475,7 +475,7 @@ api.call('cdr.get', 'OUT', from, to, null, null).success(function(result) {
 * [CDR.Out](http://www.callr.com/docs/objects/#CDR.Out)
 
 
-********************************************************************************
+***
 
 ### SENDR
 

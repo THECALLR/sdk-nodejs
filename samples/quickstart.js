@@ -1,4 +1,4 @@
-var callr = require('callr');
+var callr = require('../lib/callr');
 
 try {
 	// initialize instance Callr
