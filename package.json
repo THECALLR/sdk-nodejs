@@ -1,6 +1,6 @@
 {
     "name": "callr",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Nodejs SDK for CALLR API",
     "keywords": [
         "callr",
@@ -11,10 +11,10 @@
     "homepage": "https://github.com/THECALLR/sdk-nodejs/",
     "author": "Michael Jacquin <mj@callr.com>",
     "main": "./index.js",
-    "licenses": {
+    "licenses": [{
         "type": "MIT",
         "url": "https://spdx.org/licenses/MIT"
-    },
+    }],
     "repository": {
         "type": "git",
         "url": "https://github.com/THECALLR/sdk-nodejs.git"
