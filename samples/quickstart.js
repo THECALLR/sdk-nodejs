@@ -1,4 +1,4 @@
-var callr = require('callr');
+var callr = require('../lib/callr');
 
 try {
 	// initialize instance Callr
@@ -13,7 +13,7 @@ try {
 		flash_message: false,
 	};
 
-	api.call('sms.send', 'CALLR', '+33123456789', 'Hello, world', options).success(function(data) {
+	api.call('sms.send', 'SMS', '+33123456789', 'Hello, world', options).success(function(data) {
 		console.log('Response:', data);
 	}).error(function(error) {
 		console.error("\nError:", error.message);
@@ -22,7 +22,7 @@ try {
 	});
 
 	// 2. "send" method: parameter of the method is an array
-	var my_array = ['CALLR', '+33123456789', 'Hello, world', options];
+	var my_array = ['SMS', '+33123456789', 'Hello, world', options];
 
 	api.send('sms.send', my_array).success(function(data) {
 		console.log('Response 2:', data);
