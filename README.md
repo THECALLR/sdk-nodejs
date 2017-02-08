@@ -136,9 +136,9 @@ api.call('sms.send', 'SMS', '+33123456789', 'Hello world!', optionSMS).success(f
 
 *Objects*
 * [SMS.Options](http://thecallr.com/docs/objects/#SMS.Options)
+* [Webhook](https://www.callr.com/docs/objects/#Webhook)
 
-
-### Inbound SMS - set URL to receive inbound messages (MO) and replies
+### Inbound SMS - set webhook endpoint to receive inbound messages (MO) and replies
 
 > **Do not set a sender if you want to receive replies** - we will automatically use a shortcode.
 
@@ -159,7 +159,7 @@ api.call('sms.send', '', '+33123456789', 'Hello world!', optionSMS).success(func
 
 *Objects*
 * [SMS.Options](http://thecallr.com/docs/objects/#SMS.Options)
-
+* [Webhook](https://www.callr.com/docs/objects/#Webhook)
 
 ### Get an SMS
 
