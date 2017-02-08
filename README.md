@@ -118,6 +118,48 @@ api.call('sms.send', 'SMS', '+33123456789', 'Hello world!', optionSMS);
 *Objects*
 * [SMS.Options](http://www.callr.com/docs/objects/#SMS.Options)
 
+#### Delivery Notification - set webhook URL to receive notifications
+```javascript
+var optionSMS = {
+    webhook: {
+        endpoint: 'http://yourdomain.com/webhook_endpoint'
+    }
+};
+
+api.call('sms.send', 'SMS', '+33123456789', 'Hello world!', optionSMS).success(function(response) {
+    // success callback
+});
+```
+
+*Method*
+* [sms.send](http://thecallr.com/docs/api/services/sms/#sms.send)
+
+*Objects*
+* [SMS.Options](http://thecallr.com/docs/objects/#SMS.Options)
+
+
+### Inbound SMS - set URL to receive inbound messages (MO) and replies
+
+> **Do not set a sender if you want to receive replies** - we will automatically use a shortcode.
+
+```javascript
+var optionSMS = {
+    webhook: {
+        endpoint: 'http://yourdomain.com/webhook_endpoint'
+    }
+};
+
+api.call('sms.send', '', '+33123456789', 'Hello world!', optionSMS).success(function(response) {
+    // success callback
+});
+```
+
+*Method*
+* [sms.send](http://thecallr.com/docs/api/services/sms/#sms.send)
+
+*Objects*
+* [SMS.Options](http://thecallr.com/docs/objects/#SMS.Options)
+
 
 ### Get an SMS
 
