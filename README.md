@@ -33,6 +33,18 @@ var options = {
 var api = new callr.api('login', 'password', options);
 ```
 
+## Set Login As after Init
+
+```javascript
+var callr = require('callr');
+var api = new callr.api('login', 'password');
+...
+
+api.setLoginAs('user', '<login>'); // available types: user, account
+                                   // available targets: <login> for type user,
+                                   // <hash> for type account
+```
+
 ## API return value management
 > Set your success/error callback to get data returned by the API
 
