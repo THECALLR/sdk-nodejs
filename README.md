@@ -1,8 +1,8 @@
 sdk-nodejs
 ==========
 
-SDK in NodeJS for CALLR API  
-For more examples see the the nodejs examples (https://github.com/THECALLR/examples-nodejs) repo.  
+SDK in NodeJS for CALLR API
+For more examples see the the nodejs examples (https://github.com/THECALLR/examples-nodejs) repo.
 
 ## Quick start
 Install via NPM
@@ -17,6 +17,32 @@ Or get sources from Github
 var callr = require('callr');
 
 var api = new callr.api('login', 'password');
+```
+
+## Init with Login As
+
+```javascript
+var callr = require('callr');
+var options = {
+    loginas: {
+        type: 'user',       // available types: user, account
+        target: '<login>'   // available targets: <login> for type user,
+    }                       // <hash> for type account
+}
+
+var api = new callr.api('login', 'password', options);
+```
+
+## Set Login As after Init
+
+```javascript
+var callr = require('callr');
+var api = new callr.api('login', 'password');
+...
+
+api.setLoginAs('user', '<login>'); // available types: user, account
+                                   // available targets: <login> for type user,
+                                   // <hash> for type account
 ```
 
 ## API return value management
