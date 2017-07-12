@@ -11,15 +11,41 @@ Install via NPM
 
 Or get sources from Github
 
-## Init
+## Different methods of authentication
+
+When you initialise the callr api object with your chosen authentication method, you can also pass in any options like the following:
+```javascript
+var options = {
+    ...
+}
+var callr = require('callr');
+var api = new callr.api(<authentication method>, options);
+...
+```
+
+### Init with login and password
+```javascript
+var callr = require('callr');
+var api = new callr.api(callr.loginPasswordAuth('login', 'password'));
+```
+
+### Init with Api-Key token
+* see [https://www.callr.com/docs/api/services/api-key/](https://www.callr.com/docs/api/services/api-key/)
 
 ```javascript
 var callr = require('callr');
-
-var api = new callr.api('login', 'password');
+var api = new callr.api(callr.apiKeyAuth('987654321abcdef987654321abcdef987654321abcdef987654321abcdef987654321abcdef987654321abcdef987654321a'));
 ```
 
-## Init with Login As
+### Init with User session token
+* see [https://www.callr.com/docs/api/services/session/](https://www.callr.com/docs/api/services/session/)
+
+```javascript
+var callr = require('callr');
+var api = new callr.api(callr.userSessionAuth('987654321abcdef987654321abcdef987654321a'));
+```
+
+### Init with Login As
 
 ```javascript
 var callr = require('callr');
@@ -30,7 +56,7 @@ var options = {
     }                       // <hash> for type account
 }
 
-var api = new callr.api('login', 'password', options);
+var api = new callr.api(callr.loginPasswordAuth('login', 'password'), options);
 ```
 
 ## Set Login As after Init
