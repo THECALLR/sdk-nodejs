@@ -11,6 +11,9 @@ Install via NPM
 
 Or get sources from Github
 
+## Authenticating for older SDK versions 1.x
+* Please see the documentation [here](#authentication-for-older-versions) for how to authenticate using older `1.x` versions of the SDK.
+
 ## Different methods of authentication
 
 When you initialise the callr api object with your chosen authentication method, you can also pass in any options like the following:
@@ -626,3 +629,30 @@ try {
     console.log('Error\n', e);
 }
 ```
+
+## Authentication for older versions
+* Deprecated method for authenticating with `1.x` versions of the SDK.
+
+For authenticating with older versions of the API SDK can be done the following way:
+```javascript
+var callr = require('callr');
+var api = new callr.api('login', 'password');
+...
+```
+
+Or when passing options
+```javascript
+var callr = require('callr');
+var options = {
+    loginas: {
+        type: 'user',       // available types: user, account
+        target: '<login>'   // available targets: <login> for type user,
+    }                       // <hash> for type account
+}
+
+var api = new callr.api('login', 'password', options);
+...
+```
+
+---
+
