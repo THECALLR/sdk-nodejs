@@ -574,7 +574,7 @@ api.call('cdr.get', 'OUT', from, to, null, null).success(function(result) {
 
 ***
 
-### SENDR
+### Calling
 
 #### Broadcast messages to a target
 
@@ -592,7 +592,7 @@ var options = {
     loop: 2
 };
 
-api.call('sendr/simple.broadcast_1', target, messages, options).success(function(result) {
+api.call('calls.broadcast_1', target, messages, options).success(function(result) {
     //
 });
 ```
@@ -607,17 +607,17 @@ var target = {
 
 var messages = [131, 132, 134];
 
-api.call('sendr/simple.broadcast_1', target, messages, null).success(function(result) {
+api.call('calls.broadcast_1', target, messages, null).success(function(result) {
     //
 });
 ```
 
 *Method*
-* [sendr/simple.broadcast_1](http://www.callr.com/docs/api/services/sendr/simple/#sendr/simple.broadcast_1)
+* [calls.broadcast_1](https://www.callr.com/docs/api/services/calls/#calls.broadcast_1)
 
 *Objects*
 * [Target](http://www.callr.com/docs/objects/#Target)
-* [SENDR.Simple.Broadcast1.Options](http://www.callr.com/docs/objects/#SENDR.Simple.Broadcast1.Options)
+* [Calls.Broadcast1.Options](https://www.callr.com/docs/objects/#Calls.Broadcast1.Options)
 
 ***
 
