@@ -1,7 +1,7 @@
 {
     "name": "callr",
     "version": "2.0.0",
-    "description": "Nodejs SDK for CALLR API",
+    "description": "[DEPRECATED — shutting down 2027-06-30, migrate to Callr REST API v2] Legacy Callr JSON-RPC API (v1) Node.js SDK. See https://docs.callr.com/reference/migrating-from-json-rpc-v1",
     "keywords": [
         "callr",
         "thecallr",
